@@ -1,4 +1,4 @@
-package in.capgemini.realestatebrokerapp;
+package in.capgemini.brokerappapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
