@@ -1,5 +1,9 @@
 package in.capgemini.brokerappapi.domain;
 
+/**
+ * @author hsraj
+ *
+ */
 public class Customer {
 
 	private String custId;
