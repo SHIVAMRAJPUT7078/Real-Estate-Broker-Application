@@ -19,7 +19,7 @@ public class Customer {
 	private Long custId;
 	private String firstName;
 	private String lastName;
-	private Address address;
+	//private Address address;
 	private String email;
 	private List<Order> custOrder;
 	private Cart custCart;
@@ -41,12 +41,7 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+
 	public String getEmail() {
 		return email;
 	}

@@ -1,20 +1,30 @@
+//step 1
 package in.capgemini.brokerappapi.domain;
 
 import java.util.Date;
-import java.util.List;
+//import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+@Entity
 public class Order {
-	private String orderId;
+	 @Id //it means it is a primary key
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long orderId;
+	//@NotBlank(message="projectIdentifier is required")
+	private String orderName;
 	private Date orderDate;
 	private String orderStatus;
 	private String orderIdentifier;
-	private Customer customer;
-	private List<Property> propertyList;
+	//private Customer customer;
+	//private List<Property> propertyList;
 	  @JsonFormat(pattern="yyyy-MM-dd")
 		private Date start_date;
 		@JsonFormat(pattern="yyyy-MM-dd")
@@ -29,10 +39,10 @@ public class Order {
 				super();
 				// TODO Auto-generated constructor stub
 			}
-	public String getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(String orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 	public Date getOrderDate() {
@@ -47,18 +57,6 @@ public class Order {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public Customer getCustomer() {
-		return customer;
-	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	public List<Property> getPropertyList() {
-		return propertyList;
-	}
-	public void setPropertyList(List<Property> propertyList) {
-		this.propertyList = propertyList;
-	}
 	public String getOrderIdentifier() {
 		return orderIdentifier;
 	}
@@ -67,6 +65,12 @@ public class Order {
 	}
 
 	
+	public String getOrderName() {
+		return orderName;
+	}
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
+	}
 	@PrePersist
 	//this method automatically create current date with the help of prepersist
 	public void onCreate() {
