@@ -8,5 +8,5 @@ import in.capgemini.brokerappapi.domain.Order;
 
 @Repository
 public interface OrderRepository extends CrudRepository<Order, Long>{
-  Order findByOrderIdentifier(String orderIdentifier);
+  //Order findByOrderIdentifier(String orderIdentifier);
 }

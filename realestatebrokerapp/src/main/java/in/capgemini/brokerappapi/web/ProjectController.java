@@ -22,33 +22,37 @@ public class ProjectController {
 	@Autowired
 	private OrderService orderService;
 	
-	@Autowired
-	private MapValidationErrorService  mapValidationErrorService;
-	
-	@PostMapping("")
-	public ResponseEntity<?> createNewOrder( @RequestBody Order order ,BindingResult result){
-		ResponseEntity<?> errorMap=mapValidationErrorService.mapValidationError(result);
-		if(errorMap!=null) return errorMap;
-		
+	public Order createNewOrder( @RequestBody Order order) {
 		Order savedOrder=orderService.addorUpdate(order);
-		return new ResponseEntity<Order>(savedOrder,HttpStatus.CREATED);
+		return savedOrder;
 	}
-	
-	@GetMapping("/{orderId}")
-	public ResponseEntity<?> getOrderById(@PathVariable String orderId){
-		Order order=orderService.findOrderByOrderIdentifier(orderId.toUpperCase());
-		return new ResponseEntity<Order>(order,HttpStatus.OK);
-		
-	}
-	
-	@GetMapping("/all")
-	public Iterable<Order> getAllProjects(){
-		return orderService.findAllOrder();
-	}
-	
-	@DeleteMapping("/{orderid}")
-	public ResponseEntity<?> deleteOrder(@PathVariable String orderId){
-		orderService.deleteOrderByOrderIdentifier(orderId);
-		return new ResponseEntity<String>("Order with Id:"+orderId.toUpperCase()+"Deleted successfully!",HttpStatus.OK);
-	}
+//	@Autowired
+//	private MapValidationErrorService  mapValidationErrorService;
+//	
+//	@PostMapping("")
+//	public ResponseEntity<?> createNewOrder( @RequestBody Order order ,BindingResult result){
+//		ResponseEntity<?> errorMap=mapValidationErrorService.mapValidationError(result);
+//		if(errorMap!=null) return errorMap;
+//		
+//		Order savedOrder=orderService.addorUpdate(order);
+//		return new ResponseEntity<Order>(savedOrder,HttpStatus.CREATED);
+//	}
+//	
+//	@GetMapping("/{orderId}")
+//	public ResponseEntity<?> getOrderById(@PathVariable String orderId){
+//		Order order=orderService.findOrderByOrderIdentifier(orderId.toUpperCase());
+//		return new ResponseEntity<Order>(order,HttpStatus.OK);
+//		
+//	}
+//	
+//	@GetMapping("/all")
+//	public Iterable<Order> getAllProjects(){
+//		return orderService.findAllOrder();
+//	}
+//	
+//	@DeleteMapping("/{orderid}")
+//	public ResponseEntity<?> deleteOrder(@PathVariable String orderId){
+//		orderService.deleteOrderByOrderIdentifier(orderId);
+//		return new ResponseEntity<String>("Order with Id:"+orderId.toUpperCase()+"Deleted successfully!",HttpStatus.OK);
+//	}
 }
