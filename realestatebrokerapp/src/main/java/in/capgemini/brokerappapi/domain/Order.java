@@ -18,10 +18,8 @@ public class Order {
 	 @Id //it means it is a primary key
 	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long orderId;
-	//@NotBlank(message="projectIdentifier is required")
-	private String orderName;
-	private Date orderDate;
 	private String orderStatus;
+	//@NotBlank(message="projectIdentifier is required")
 	private String orderIdentifier;
 	//private Customer customer;
 	//private List<Property> propertyList;
@@ -45,12 +43,6 @@ public class Order {
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
-	public Date getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
 	public String getOrderStatus() {
 		return orderStatus;
 	}
@@ -62,14 +54,6 @@ public class Order {
 	}
 	public void setOrderIdentifier(String orderIdentifier) {
 		this.orderIdentifier = orderIdentifier;
-	}
-
-	
-	public String getOrderName() {
-		return orderName;
-	}
-	public void setOrderName(String orderName) {
-		this.orderName = orderName;
 	}
 	@PrePersist
 	//this method automatically create current date with the help of prepersist
