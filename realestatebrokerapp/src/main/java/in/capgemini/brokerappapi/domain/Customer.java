@@ -60,6 +60,11 @@ public class Customer {
 	public void setCustCart(Cart custCart) {
 		this.custCart = custCart;
 	}
+	@Override
+	public String toString() {
+		return "Customer [custId=" + custId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", custOrder=" + custOrder + ", custCart=" + custCart + "]";
+	}
 	
 	
 }
