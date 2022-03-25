@@ -19,33 +19,33 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.save(order);
 	}
 
-//	@Override
-//	public Order deleteOrderByOrderIdentifier(String orderId) {
-//		// TODO Auto-generated method stub
-//		Order order=orderRepository.findByOrderIdentifier(orderId.toUpperCase());
-//		if(order==null) {
-//			throw new OrderIdException("order Identifier: "+orderId.toUpperCase()+" Does nor exist");
-//		}
-//		orderRepository.delete(order);
-//		return order;
-//	}
+	@Override
+	public Order deleteOrderByOrderIdentifier(String orderId) {
+		// TODO Auto-generated method stub
+		Order order=orderRepository.findByOrderIdentifier(orderId.toUpperCase());
+		if(order==null) {
+			throw new OrderIdException("order Identifier: "+orderId.toUpperCase()+" Does nor exist");
+		}
+		orderRepository.delete(order);
+		return order;
+	}
 
-//	@Override
-//	public Iterable<Order> findAllOrder() {
-//		// TODO Auto-generated method stub
-//		return orderRepository.findAll();
-//	}
-//
-//	@Override
-//	public Order findOrderByOrderIdentifier(String orderId) {
-//		// TODO Auto-generated method stub
-//		Order order=orderRepository.findByOrderIdentifier(orderId.toUpperCase());
-//		if(order==null) {
-//			throw new OrderIdException("order Identifier: "+orderId.toUpperCase()+" Does nor exist");
-//		}
-//		return order;
-//	}
-//	
+	@Override
+	public Iterable<Order> findAllOrder() {
+		// TODO Auto-generated method stub
+		return orderRepository.findAll();
+	}
+
+	@Override
+	public Order findOrderByOrderIdentifier(String orderId) {
+		// TODO Auto-generated method stub
+		Order order=orderRepository.findByOrderIdentifier(orderId.toUpperCase());
+		if(order==null) {
+			throw new OrderIdException("order Identifier: "+orderId.toUpperCase()+" Does nor exist");
+		}
+		return order;
+	}
+	
 	
 
 }
