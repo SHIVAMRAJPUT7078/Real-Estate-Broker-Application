@@ -1,36 +1,73 @@
 
 package in.capgemini.brokerappapi.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
+@Entity
 public class Property {
-
-	private String productId;
-	private String productName;
-	private double price;
+	 @Id
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long propertyId;
+	@NotBlank(message="propertyName is required")
+	
+	private String propertyName;
+	@NotBlank(message="propertyIdentifier is required")
+	@Column(updatable=false,unique=true)
+	@Size(min=4,max=5,message="Please use 4 to 5 characters only")
+	private String propertyIdentifier;
+	private int price;
 	private String color;
 	private String dimension;
 	private String specification;
 	private String manufacturer;
 	private int quantity;
-	private Category category;
-	public String getProductId() {
-		return productId;
+    
+	
+// //OnetoOne with Backlog
+@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+@JoinColumn(referencedColumnName="cartId")
+   private Category category;
+//    
+   
+    
+	
+	
+	
+	public Property() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setProductId(String productId) {
-		this.productId = productId;
+
+	public Long getPropertyId() {
+		return propertyId;
 	}
-	public String getProductName() {
-		return productName;
+	public void setPropertyId(Long propertyId) {
+		this.propertyId = propertyId;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public String getPropertyName() {
+		return propertyName;
 	}
-	public double getPrice() {
+	public void setPropertyName(String propertyName) {
+		this.propertyName = propertyName;
+	}
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getColor() {
@@ -63,6 +100,17 @@ public class Property {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+public String getPropertyIdentifier() {
+		return propertyIdentifier;
+	}
+	public void setPropertyIdentifier(String propertyIdentifier) {
+		this.propertyIdentifier = propertyIdentifier;
+	}
+	
+
+	
+	
 	public Category getCategory() {
 		return category;
 	}
@@ -71,10 +119,16 @@ public class Property {
 	}
 	@Override
 	public String toString() {
-		return "Property [productId=" + productId + ", productName=" + productName + ", price=" + price + ", color="
-				+ color + ", dimension=" + dimension + ", specification=" + specification + ", manufacturer="
-				+ manufacturer + ", quantity=" + quantity + ", category=" + category + "]";
+		return "Property [propertyId=" + propertyId + ", propertyName=" + propertyName + ", propertyIdentifier="
+				+ propertyIdentifier + ", price=" + price + ", color=" + color + ", dimension=" + dimension
+				+ ", specification=" + specification + ", manufacturer=" + manufacturer + ", quantity=" + quantity
+				+ ", category=" + category + "]";
 	}
+	
+
+	
+	
+	
 	
 	
 }
