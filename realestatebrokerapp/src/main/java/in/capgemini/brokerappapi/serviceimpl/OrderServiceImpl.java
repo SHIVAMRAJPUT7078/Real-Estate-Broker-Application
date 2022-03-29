@@ -18,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		try {
 		order.setOrderIdentifier(order.getOrderIdentifier().toUpperCase());	
+//		order.setProperty(order.getProperty());
 		return orderRepository.save(order);
 		}
 		catch(Exception ex) {
