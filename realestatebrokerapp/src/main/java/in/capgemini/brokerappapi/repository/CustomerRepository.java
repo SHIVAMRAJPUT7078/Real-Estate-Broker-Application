@@ -8,5 +8,7 @@ import in.capgemini.brokerappapi.domain.Customer;
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Long>{
 
+	public Customer findByCustomerIdentifier(String customerIdentifier);
+
 	
 }
