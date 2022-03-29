@@ -10,10 +10,16 @@ import in.capgemini.brokerappapi.domain.Customer;
  */
 public interface CustomerService {
 
-	Customer addCustomer(Customer customer);
+	Customer addOrUpdateCustomer(Customer customer);
+	public Customer findByCustomerIdentifier(String customerIdentifier);
+	public Iterable<Customer> findAll();
+	public void deleteCustomerByIdentifier(String customerIdentifier);
+	/*
 	Customer updateCustomer(Customer customer);
 	void removeCustomer(Customer customer);
 	Customer viewCustomer();
 	List<Customer> viewAllCustomer();
+	public Customer findByCustomerId(Long customerId);
+	*/
 	
 }
