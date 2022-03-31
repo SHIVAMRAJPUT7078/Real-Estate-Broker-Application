@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import in.capgemini.brokerappapi.domain.Address;
 import in.capgemini.brokerappapi.domain.Customer;
+import in.capgemini.brokerappapi.domain.Property;
 import in.capgemini.brokerappapi.exception.CustomerIdException;
 import in.capgemini.brokerappapi.repository.CustomerRepository;
 import in.capgemini.brokerappapi.service.CustomerService;
@@ -19,16 +20,21 @@ public class CustomerServiceImpl implements CustomerService{
 	private CustomerRepository customerRepository;
 	@Override
 	public Customer addOrUpdateCustomer(Customer customer) {
+		customer.setCustomerIdentifier(customer.getCustomerIdentifier().toUpperCase());
+		Customer cus = customerRepository.findByCustomerIdentifier(customer.getCustomerIdentifier());
+		
 		if(customer.getAddress() == null) {
-			Customer cus = customerRepository.findByCustomerIdentifier(customer.getCustomerIdentifier());
 			Address address = cus.getAddress();
 			customer.setAddress(address);
 			address.setCustomer(customer);
 			return customerRepository.save(customer);
-		
 		}
-		
-		
+		if(customer.getProperty() == null) {
+			Property property  = cus.getProperty();
+			customer.setProperty(property);
+			property.setCustomer(customer);
+			return customerRepository.save(customer);
+		}
 		return customerRepository.save(customer);
 		
 	}
