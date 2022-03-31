@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -42,11 +43,25 @@ public class Property {
 @JoinColumn(referencedColumnName="cartId")
    private Category category;
 //    
+
+
+	@OneToOne(fetch = FetchType.EAGER,mappedBy = "property")
+	@JoinColumn(name = "customer_id",nullable = false)
+	@JsonIgnore
+	private Customer customer;
    
     
 	
 	
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	public Property() {
 		super();
 		// TODO Auto-generated constructor stub
