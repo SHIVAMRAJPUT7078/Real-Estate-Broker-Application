@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -38,10 +39,26 @@ public class Customer {
 	private String customerLastName;
 	private String email;
 	@OneToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_name")
+	@JoinColumn(name = "address_id")
 	private Address address;
+	@OneToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+	@JoinColumn(name = "property_id")
+	private Property property;
 	
 	
+	
+	
+
+	public Property getProperty() {
+		return property;
+	}
+
+
+	public void setProperty(Property property) {
+		this.property = property;
+	}
+
+
 	public Customer() {
 		super();
 		
